@@ -1,20 +1,14 @@
 version: '3.8'
 
 services:
-  backend:
-    build:
-      context: ./backend
-    container_name: flask_backend
+  flask_backend:
+    image: satyamshivam/backend
     ports:
       - "5000:5000"
-    command: python3 app.py
 
-  frontend:
-    build:
-      context: ./frontend
-    container_name: node_frontend
+  node_frontend:
+    image: satyamshivam/frontend
     ports:
       - "3000:3000"
-    command: node app.js
-    depends_on:
-      - backend
+    environment:
+      - BACKEND_URL=http://flask_backend:5000/api
