@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Data Viewer</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <h1>Fetched Data</h1>
+  <ul>
+    <% data.forEach(item => { %>
+      <li><strong>ID:</strong> <%= item.id %> — <strong>Name:</strong> <%= item.name %></li>
+    <% }) %>
+  </ul>
+</body>
+</html>
