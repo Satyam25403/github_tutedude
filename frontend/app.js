@@ -8,7 +8,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.get('/', async (req, res) => {
   try {
-    const response = await axios.get('http://127.0.0.1:5000/api'); 
+    const response = await axios.get('http://backend:5000/api'); 
     console.log('Fetched data:', response.data);
     res.render('index', { data: response.data });
     
