@@ -9,7 +9,7 @@ CORS(app)
 @app.route('/api')
 def serve_json():
     
-    with open(os.path.join(os.getcwd(), 'data.json'), 'r') as f:
+    with open(os.path.join(os.path.dirname(__file__), 'data.json'), 'r') as f:
         data = json.load(f)
     return jsonify(data)
 
