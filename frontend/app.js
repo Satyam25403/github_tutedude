@@ -1,6 +1,9 @@
 const express = require('express');
 const axios = require('axios');
 const path = require('path');
+
+require('dotenv').config();
+
 const backend_url = process.env.BACKEND_URL || 'http://localhost:5000/api';
 const app = express();
 app.set('view engine', 'ejs');
