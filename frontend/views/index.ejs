@@ -5,7 +5,8 @@
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <h1>Fetched Data</h1>
+  <h1>Server: <%= host.hostname %> (<%= host.ip %>)</h1>
+  <h2>Fetched Data</h2>
   <ul>
     <% data.forEach(item => { %>
       <li><strong>ID:</strong> <%= item.id %> — <strong>Name:</strong> <%= item.name %></li>
