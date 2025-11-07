@@ -2,6 +2,8 @@ from flask import Flask, jsonify
 import json
 import os
 from flask_cors import CORS
+import socket
+
 
 app = Flask(__name__)
 
@@ -9,6 +11,12 @@ CORS(app)
 @app.route('/')
 def api_health():
     return jsonify({"status": "ok"}), 200
+    
+@app.route('/hostinfo')
+def host_info():
+    hostname = socket.gethostname()
+    ip = socket.gethostbyname(hostname)
+    return jsonify({'hostname': hostname, 'ip': ip})
 
 @app.route('/api')
 def serve_json():
