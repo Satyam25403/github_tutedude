@@ -9,12 +9,31 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+// app.get('/', async (req, res) => {
+//   try {
+//     const response = await axios.get(backend_url); 
+//     console.log('Fetched data:', response.data);
+//     res.render('index', { data: response.data });
+    
+//   } catch (error) {
+//     res.status(500).send('Error fetching data');
+//   }
+// });
+const backend_api_url = process.env.BACKEND_URL || 'http://localhost:5000/api';
+const backend_hostinfo_url = process.env.HOSTINFO_URL || 'http://localhost:5000/hostinfo';
+
 app.get('/', async (req, res) => {
   try {
-    const response = await axios.get(backend_url); 
-    console.log('Fetched data:', response.data);
-    res.render('index', { data: response.data });
-    
+    const [dataRes, hostRes] = await Promise.all([
+      axios.get(backend_api_url),
+      axios.get(backend_hostinfo_url)
+    ]);
+
+    res.render('index', {
+      data: dataRes.data,
+      host: hostRes.data
+    });
+
   } catch (error) {
     res.status(500).send('Error fetching data');
   }
